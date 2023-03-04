@@ -1,0 +1,33 @@
+Sub calcula()
+Dim i, j, k As Integer
+Dim n As Integer
+Dim c As Integer
+Dim r As Range
+Dim fr As Range
+
+n = Range("B1", Range("B1").End(xlDown)).Rows.Count
+Range("AL5") = n
+
+For i = 1 To n
+  Range("A" & i) = Format(Range("B" & i), "dddd")
+Next i
+
+Set r = Range("AF1:EA1")
+For Each fr In r
+  c = 0
+  For i = 1 To 245
+    For j = 3 To 29
+      If Cells(i, j).Text = fr.Text Then
+        c = c + 1
+      End If
+    Next j
+  Next i
+  Cells(2, fr.Column) = c
+  Cells(3, fr.Column) = Cells(2, fr.Column) / n
+Next
+
+End Sub
+Sub texxt()
+'Range("AE16") = WeekdayName(Weekday(Range("AE16")))
+Range("A177") = Format(Range("B177"), "dddd")
+End Sub

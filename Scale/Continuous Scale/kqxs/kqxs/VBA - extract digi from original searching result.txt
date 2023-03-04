@@ -1,0 +1,164 @@
+Sub main_job()
+Dim ews As Worksheet
+Dim i, j As Integer
+
+Sheets("GENERAL").Select
+Cells.Select
+Selection.NumberFormat = "@"
+
+i = Sheets.Count
+For j = 2 To i
+  Sheets(j).Select
+  Cells.Select
+  Selection.NumberFormat = "@"
+  Call del8
+Next j
+
+End Sub
+Sub del8()
+
+Cells.Select
+Selection.NumberFormat = "@"
+
+Rows("8:8").Delete
+Rows("5:5").Delete
+Columns("C:C").Delete
+Columns("B:B").ColumnWidth = 45
+
+Call split_number
+
+End Sub
+Sub split_number()
+Dim i, j, k As Integer
+Dim X As Variant
+
+'replace newline by space key
+Range("B4") = Replace(Range("B4"), Chr(10), " ")
+Range("B6") = Replace(Range("B6"), Chr(10), " ")
+
+
+For k = 1 To 8
+  X = Split(Range("B" & k).Value, " ")
+  j = 3
+  For i = LBound(X) To UBound(X)
+    Cells(k, j) = Trim(X(i))
+    Cells(k, j + 7) = Right(Trim(X(i)), 2)
+    j = j + 1
+  Next i
+Next k
+
+Range("E4").Value = Left(Range("E4").Value, 5)
+Range("E6").Value = Left(Range("E6").Value, 4)
+Range("L4").Value = Right(Range("E4"), 2)
+Range("L6").Value = Right(Range("E6"), 2)
+
+Call change_row_column
+End Sub
+Sub change_row_column()
+
+Range("I1") = ActiveSheet.Name 'input date
+
+'copy 02 last number
+Range("K1") = Range("J2")
+Range("L1") = Range("J3")
+Range("M1") = Range("K3")
+Range("N1") = Range("J4")
+Range("O1") = Range("K4")
+Range("P1") = Range("L4")
+Range("Q1") = Range("M4")
+Range("R1") = Range("N4")
+Range("S1") = Range("O4")
+Range("T1") = Range("J5")
+Range("U1") = Range("K5")
+Range("V1") = Range("L5")
+Range("W1") = Range("M5")
+Range("X1") = Range("J6")
+Range("Y1") = Range("K6")
+Range("Z1") = Range("L6")
+Range("AA1") = Range("M6")
+Range("AB1") = Range("N6")
+Range("AC1") = Range("O6")
+Range("AD1") = Range("J7")
+Range("AE1") = Range("K7")
+Range("AF1") = Range("L7")
+Range("AG1") = Range("J8")
+Range("AH1") = Range("K8")
+Range("AI1") = Range("L8")
+Range("AJ1") = Range("M8")
+
+'copy full number
+Range("AK1") = Range("C1")
+Range("AL1") = Range("C2")
+Range("AM1") = Range("C3")
+Range("AN1") = Range("D3")
+Range("AO1") = Range("C4")
+Range("AP1") = Range("D4")
+Range("AQ1") = Range("E4")
+Range("AR1") = Range("F4")
+Range("AS1") = Range("G4")
+Range("AT1") = Range("H4")
+Range("AU1") = Range("C5")
+Range("AV1") = Range("D5")
+Range("AW1") = Range("E5")
+Range("AX1") = Range("F5")
+Range("AY1") = Range("C6")
+Range("AZ1") = Range("D6")
+Range("BA1") = Range("E6")
+Range("BB1") = Range("F6")
+Range("BC1") = Range("G6")
+Range("BD1") = Range("H6")
+Range("BE1") = Range("C7")
+Range("BF1") = Range("D7")
+Range("BG1") = Range("E7")
+Range("BH1") = Range("C8")
+Range("BI1") = Range("D8")
+Range("BJ1") = Range("E8")
+Range("BK1") = Range("F8")
+
+'clean table
+Columns("A:H").Delete
+Range("A2:BK12") = ""
+Columns("A:BC").EntireColumn.AutoFit
+Range("A1").Select
+
+Call copy_data
+End Sub
+Sub copy_data()
+Dim i, j, k As Integer
+Dim ws As Worksheet
+Dim aws As Worksheet
+Dim a() As Variant
+
+Set ws = Sheets("GENERAL")
+Set aws = ActiveSheet
+
+ReDim a(1 To 55)
+For i = 1 To 55
+  a(i) = aws.Cells(1, i)
+Next i
+
+ws.Select
+Selection.NumberFormat = "@"
+
+If ws.Range("B1").Text = "" Then
+  For i = 1 To 55
+    ws.Cells(1, i + 1) = a(i)
+  Next i
+ElseIf ws.Range("B1").Text <> "" And ws.Range("B2").Text = "" Then
+  For i = 1 To 55
+    ws.Cells(2, i + 1) = a(i)
+  Next i
+Else
+  ws.Range("B1").Select
+  Selection.End(xlDown).Select
+  Selection.Offset(1, 0).Select
+  For i = 1 To 55
+    ws.Cells(ActiveCell.Row, i + 1) = a(i)
+  Next i
+End If
+ws.Columns("B:BD").EntireColumn.AutoFit
+aws.Select
+
+Set ws = Nothing
+Set aws = Nothing
+End Sub

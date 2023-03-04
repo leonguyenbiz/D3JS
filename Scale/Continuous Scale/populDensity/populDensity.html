@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Scale/populDensity/populDensity.css">
+    <title>Population Density</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Population Density Chart</h1>
+            <p>Top 10 countries with highest population density</p>
+        </div>
+
+        <div id="chart">
+            <svg></svg>
+        </div>
+
+        <div id="output">
+            <h3>Enter number between 0 and 100 (in the left bottom) to get a corresponding population density value, with 100 is being the maximum rating for the population density of  Macao</h3>
+            <input type="text" id="scaleinput">
+            <button type="submit" id="scalesubmit">Get Population Density</button>
+            <p id="scaleoutput"></p>
+        </div>
+    </div>
+    <script src="/library/d3-v7.js"></script>
+    <script src="/Scale/populDensity/populDensity.js"></script>
+</body>
+</html>

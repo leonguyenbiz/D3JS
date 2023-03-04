@@ -1,0 +1,8 @@
+Sub convert_date_to_weekday_name()
+dim m, n as integer
+
+'Range("AE16") = WeekdayName(Weekday(Range("AE16")))
+Range("A177") = Format(Range("B177"), "dddd")
+m = Format(Date, "mm") 'month
+n = Format(Date, "mm") 'day
+End Sub

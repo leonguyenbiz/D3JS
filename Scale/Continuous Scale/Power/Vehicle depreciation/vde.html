@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Scale/Continuous Scale/Power/Vehicle depreciation/vd.css">
+
+    <title>Vehicle Deperciation</title>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h1 color="green">Depreciation Chart of Cars</h1>
+        </div>
+
+        <div id="header">
+            <label for="cost">Vehicle Cost ($)</label>
+            <input type="text" id="cost">
+            <label for="rate">Exponential Depreciation Rate (%)</label>
+            <input type="text" id="rate">
+            <button type="submit">Check</button>
+        </div>
+
+        <div id="chart">
+            <svg></svg>
+        </div>
+
+    </div>
+    <script src="/library/d3-v7.js"></script>"
+    <script src="/Scale/Continuous Scale/Power/Vehicle depreciation/vde.js"></script>
+</body>
+</html>
